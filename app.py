@@ -18,9 +18,8 @@ CORS(app)
 # with open('models/class_indices.json', 'r') as f:
 #     class_indices = json.load(f)
 
-base_dir = os.path.dirname(__file__)
-model_path = os.path.join(base_dir, "../models/food_freshness_model.keras")
-label_path = os.path.join(base_dir, "../models/class_indices.json")
+model_path = os.path.join("models", "food_freshness_model.keras")
+label_path = os.path.join("models", "class_indices.json")
 
 model = tf.keras.models.load_model(model_path)
 with open(label_path, 'r') as f:
@@ -75,3 +74,7 @@ def predict():
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
